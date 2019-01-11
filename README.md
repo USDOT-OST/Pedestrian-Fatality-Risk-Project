@@ -7,7 +7,7 @@ The effects of roadway and built environment characteristics on pedestrian fatal
 https://maps.dot.gov/BTS/PedestrianFatalityModel/
 
 # Contact
-Overal project Questions: 
+Overal Project Questions: 
 paul.teicher@dot.gov
 
 Questions Regarding Code or Model Structure:
