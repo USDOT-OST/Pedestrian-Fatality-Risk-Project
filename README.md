@@ -6,11 +6,9 @@ https://maps.dot.gov/BTS/PedestrianFatalityModel/
 
 # Contact
 Overal project Questions: 
-Paul Teicher
 paul.teicher@dot.gov
 
 Questions Regarding Code or Model Structure:
-Theodore Mansfield
 theodore.mansfield@rsginc.com
 
 Questions Regarding the Web Application:
