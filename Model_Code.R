@@ -26,10 +26,10 @@ library(glmmTMB)
 
 # Set up Working directory
 #setwd("C:/Users/Ted Mansfield/Desktop/Model/R")
-setwd("C:/Users/Coleman.Shepard.ctr/DOT/Pedestrian Fatalities/Pedestrian-Fatality-Risk-Project-master")
+setwd("")
 
 # Load data
-Data <- read.csv("Model_Input_Data.csv") #Note: tracts with zero land area not included
+Data <- read.csv("./Data/Model_Input_Data.csv") #Note: tracts with zero land area not included
 
 # Variable names
 vars <- c("GEOID",
@@ -181,7 +181,7 @@ urb_zinb_RP <- glmmTMB(PF1216 ~
                            control = glmmTMBControl(optCtrl=list(iter.max=1e3,eval.max=1e3)))
 
 ranef <- ranef(urb_zinb_RP)
-write.csv(ranef$cond, 'urb_ranef_cond.csv')
+write.csv(ranef$cond, './Output/urb_ranef_cond.csv')
 
 zinb_obs_pred <- as.data.frame(cbind(Data_urb$PF1216, fitted(urb_zinb_4RP_noZI)))
 plot(zinb_obs_pred$V1, zinb_obs_pred$V2)
@@ -262,7 +262,7 @@ rur_zinb_RP <- glmmTMB(PF1216 ~
 vif(rur)
 
 rur_ranef <- ranef(rur_zinb_RP)
-write.csv(rur_ranef$cond, 'rur_ranef_cond.csv')
+write.csv(rur_ranef$cond, './Output/rur_ranef_cond.csv')
 
 rur_zinbRP_obs_pred <- as.data.frame(cbind(Data_rur$PF1216, fitted(rur_zinb_RP)))
 plot(rur_zinbRP_obs_pred$V1, rur_zinbRP_obs_pred$V2)
@@ -595,15 +595,15 @@ median(Data_rur$M_65)
 sd(Data_rur$M_65)
 
 #Export data and fitted values
-write.csv(fitted(urb_zinb_RP),"urb_fitted_v3.csv")
-write.csv(Data_urb,"urb_data.csv")
-write.csv(fitted(rur_zinb_RP),"rur_fitted_v3.csv")
-write.csv(Data_rur,"rur_data.csv")
+write.csv(fitted(urb_zinb_RP),"./Output/urb_fitted_v3.csv")
+write.csv(Data_urb,"./Output/urb_data.csv")
+write.csv(fitted(rur_zinb_RP),"./Output/rur_fitted_v3.csv")
+write.csv(Data_rur,"./Output/rur_data.csv")
 
 #Plot MEs
 ##NOTE: MEs were estimated using Monte Carlo simulation usign Analytica software
-MEs_FC <- as.data.frame(read.csv("MEs_FC.csv"))
-MEs_BE <- as.data.frame(read.csv("MEs_BE.csv"))
+MEs_FC <- as.data.frame(read.csv("./Data/MEs_FC.csv"))
+MEs_BE <- as.data.frame(read.csv("./Data/MEs_BE.csv"))
 
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   library(grid)
@@ -709,13 +709,13 @@ rural_BE <- ggplot(data = MEs_rural_BE, aes(x = Variable, y = Mean, fill=factor(
   theme(plot.margin = unit(c(0.1,0.1,0.1,0.3), "cm"))
 
 urban_FC
-ggsave("test_FC.png", width=2.7, height=2.25, dpi=1600)
+ggsave("./Plots/test_FC.png", width=2.7, height=2.25, dpi=1600)
 rural_FC
-ggsave("test_FC2.png", width=2.7, height=2.25, dpi=1600)
+ggsave("./Plots/test_FC2.png", width=2.7, height=2.25, dpi=1600)
 urban_BE
-ggsave("test_BE.png", width=3.8, height=2.25, dpi=1600)
+ggsave("./Plots/test_BE.png", width=3.8, height=2.25, dpi=1600)
 rural_BE
-ggsave("test_BE2.png", width=4.0, height=2.25, dpi=1600)
+ggsave("./Plots/test_BE2.png", width=4.0, height=2.25, dpi=1600)
 
 #Histogram
 Data_hist <- Data[c("Urb50", "PF1216", "PF12", "PF13", "PF14", "PF15", "PF16")]
@@ -746,7 +746,7 @@ hist_1216 <- ggplot(data = Data_hist, aes(x=Data_hist$PF1216, fill=Data_hist$Urb
   theme(plot.margin = unit(c(0.1,0.3,0.1,0.1), "cm"))
 
 hist_1216
-ggsave("hist.png", width=6, height=3, dpi=1600)
+ggsave("./Plots/hist.png", width=6, height=3, dpi=1600)
 
 #For Vuong
 sd(log(predict(urb_zinb))-log(predict(urb_nb)))
