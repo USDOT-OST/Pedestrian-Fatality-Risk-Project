@@ -1,4 +1,4 @@
-## Pedestrian Fatality ##
+## OST-P TRIAD Pedestrian Fatality ##
 ## Analyze fatalities by tract using FARS, ACS, HPMS data ##
 ## Authors: Dana Peck, Ted Mansfield
 
@@ -25,8 +25,8 @@ library(ggthemes)
 library(glmmTMB)
 
 # Set up Working directory
-#setwd("")
-setwd("")
+#setwd("C:/Users/Ted Mansfield/Desktop/Model/R")
+setwd("C:/Users/Coleman.Shepard.ctr/DOT/Pedestrian Fatalities/Pedestrian-Fatality-Risk-Project-master")
 
 # Load data
 Data <- read.csv("Model_Input_Data.csv") #Note: tracts with zero land area not included
